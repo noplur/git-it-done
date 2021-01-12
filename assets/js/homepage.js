@@ -22,6 +22,19 @@ var formSubmitHandler = function(event) {
   }
 };
 
+var buttonClickHandler = function(event) {
+  // get the language attribute from the clicked element
+  var language = event.target.getAttribute("data-language");
+  console.log(language);
+
+  if (language) {
+    getFeaturedRepos(language);
+  
+    // clear old content
+    repoContainerEl.textContent = "";
+  }
+};
+
 var getUserRepos = function(user) {
   // format the github api url
   var apiUrl = 'https://api.github.com/users/' + user + '/repos';
@@ -103,19 +116,6 @@ var getFeaturedRepos = function(language) {
       alert("Error: " + response.statusText);
     }
   });
-};
-
-var buttonClickHandler = function(event) {
-  // get the language attribute from the clicked element
-  var language = event.target.getAttribute("data-language");
-  console.log(language);
-
-  if (language) {
-    getFeaturedRepos(language);
-  
-    // clear old content
-    repoContainerEl.textContent = "";
-  }
 };
 
 // add event listeners to forms
